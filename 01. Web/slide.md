@@ -284,3 +284,17 @@ Note:
 ~!~
 
 스타일 담당
+
+~~!~~
+
+## 그래서 우리는?
+
+~!~
+
+HTML & CSS
+<br>
+공부할거임
+
+~!~
+
+[codecademy](https://www.codecademy.com/)
