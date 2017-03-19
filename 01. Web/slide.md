@@ -219,10 +219,14 @@ head, body인 것을 표시하겠다
 
 <img src="images/html_head_body.png" style="border-style: hidden;">
 
-~!~
-
 Note:
 예시 보여주기
+
+~!~
+
+<img src="images/html_head_body_detail.png" style="border-style: hidden;">
+
+~!~
 
 ### 그래서?
 
