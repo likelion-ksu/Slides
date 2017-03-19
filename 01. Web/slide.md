@@ -236,3 +236,51 @@ Note:
 * HTML을 잘 알아야 한다
 * 우리가 웹 서비스로부터 받는 문서는  
   이런 구조를 가졌다
+
+~~!~~
+
+## CSS
+
+~!~
+
+HTML만 가지고 문서를 만들면
+<br>
+예쁘게 나오지 않는다
+
+~!~
+
+뼈대만 있는 문서를 
+<br>
+화려하게
+예쁘게
+<br>
+만들 수 있다
+
+~!~
+
+<img src="images/html_css_example.jpg" style="border-style: hidden;">
+
+~!~
+
+**C**ascading **S**tyle **S**heet
+
+~!~
+
+### Cascading
+
+> **사전** : 폭포같은, 계속되는, 연속적인
+
+
+~~최상위 노드부터 아래로 스타일 속성들이 쭉 흘려내려(상속되어)가는 모습이~~ **마치 폭포처럼 보임**
+
+Note:
+> 출처 : http://www.clien.net/cs2/bbs/board.php?bo_table=kin&wr_id=2507212 
+~!~
+
+### Style Sheet
+
+스타일이 담겨 있는 시트
+
+~!~
+
+스타일 담당
