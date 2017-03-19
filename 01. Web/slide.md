@@ -198,3 +198,37 @@ ORM 마크 하듯이
 head, body인 것을 표시하겠다
 
 ~~!~~
+
+## HTML의 기본 구조
+
+~!~
+
+```
+<html>
+  <head>
+
+  </head>
+
+  <body>
+
+  </body>
+</html>
+```
+
+~!~
+
+<img src="images/html_head_body.png" style="border-style: hidden;">
+
+~!~
+
+Note:
+예시 보여주기
+
+### 그래서?
+
+~!~
+
+* 우리는 문서 한 장을 잘 줘야 한다
+* HTML을 잘 알아야 한다
+* 우리가 웹 서비스로부터 받는 문서는  
+  이런 구조를 가졌다
