@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>My_service</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown
+                 data-separator="^~!@!~"  
+                 data-separator-vertical="^~!~"  
+                 data-separator-notes="^Note:">
+          <script type="text/template">
+
+# 서비스
+
+~!@!~
+
+## 소개
+
+~!~
+
+
+채팅창으로  <!-- .element: class="fragment" -->
+
+특정 사람과  <!-- .element: class="fragment" -->
+
+공정하고 간단하게  <!-- .element: class="fragment" -->
+
+승부를 결정하는 <!-- .element: class="fragment" -->
+
+게임을 하자! <!-- .element: class="fragment" -->
+
+~!@!~
+
+## 동기
+
+~!~
+
+### 연구실에서의 삶
+
+
+~!~
+
+<h3>의<span class="fragment highlight-red">식</span>주</h3>
+
+~!~
+
+음식 종류 결정<!-- .element: class="fragment" -->
+
+메뉴 결정<!-- .element: class="fragment" -->
+
+음식 값 몰아주기<!-- .element: class="fragment" -->
+
+~!~
+
+배고프니  빠르게<!-- .element: class="fragment" -->
+
+수업중이니 원격으로<!-- .element: class="fragment" -->
+
+그리고 공정하게<!-- .element: class="fragment" -->
+
+결정하고 싶다!<!-- .element: class="fragment" -->
+
+~!@!~
+
+## 시나리오
+
+~!~
+
+### <span style="color:green">가위바위보</span>를 예로 들면
+
+~!~
+
+1. 본 서비스 사이트에 들어간다
+2. 종목(가위바위보)을 선택한다
+3. 가위바위보 중 하나를 고른다
+4. 해당 방의 링크를 카톡에 공유한다
+5. 링크를 전달받은 사람은 링크로 들어간다
+6. 해당 페이지에서 가위바위보르 선택한다
+7. 결과를 확인한다.
+
+<!-- 이미지 첨부 -->
+
+~!@!~
+
+## 이미 비슷한 서비스가 있지만...
+
+~!~
+
+* 웹 서비스 기반이라 특정 플랫폼에 얽매이지 않음
+
+* 링크를 이용한 틀을 따라 많은 응용 게임 추가 가능
+
+~!~
+
+그리고 내가 생각했을때 (12년도)에는 없었음..ㅜㅜ
+
+빨리 만들걸...
+
+
+          </script>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+        mouseWheel: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+          { src: 'socket.io/socket.io.js', async: true },
+          { src: 'plugin/notes-server/client.js', async: true },
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
