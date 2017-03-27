@@ -81,3 +81,6 @@ Session.vim
 tags
 
 # End of https://www.gitignore.io/api/vim
+
+# not trace my service
+My_Service/
