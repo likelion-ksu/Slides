@@ -84,3 +84,5 @@ tags
 
 # not trace my service
 My_Service/
+
+multiplexing.json
