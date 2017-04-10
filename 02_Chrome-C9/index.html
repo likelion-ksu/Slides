@@ -22,6 +22,7 @@
 		</script>
 	</head>
 	<body>
+
 		<div class="reveal">
 			<div class="slides">
 				<section data-markdown
@@ -267,6 +268,9 @@ change p tag text
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+Reveal.addEventListener( 'ready', function( event ) {
+      setTimeout("RevealNotes.open()", 1000 * 5);
+});
 		</script>
 	</body>
 </html>
