@@ -1,0 +1,408 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>04)Ruby_key_point</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section data-markdown
+                 data-separator="^~!@!~"
+                 data-separator-vertical="^~!~"
+                 data-separator-notes="^Note:">
+          <script type="text/template">
+<style>
+img {
+  border-style: hidden !important;
+}
+</style>
+
+# Ruby
+
+<br>
+
+## Key points
+
+~!@!~
+
+## Symbol
+
+~!~
+
+```ruby
+2.3.0 :001 > "Object".object_id
+ => 8895920 
+2.3.0 :002 > "Object".object_id
+ => 8894160 
+2.3.0 :003 > :symbol.object_id
+ => 802268 
+2.3.0 :004 > :symbol.object_id
+ => 802268 
+```
+
+Note:
+객체에는 어떤 객체인지 구분하기 위한 id가 하나씩 있다.  
+위의 소스코드는 객체에서 id를 가져오기위한 행위를 하는 코드이다.  
+위에서 스트링으로 만들어진 값의 id는 서로 다른 반면에 심볼로 만들어진 id는 같다는 것만 확인하고 일단 넘어간다.
+
+~!~
+
+<b class="fragment">어떤 한국 사람의 주민등록 번호는 <br>xxxxxx - xxxxxxx</b> 
+<hr>
+<b class="fragment"> 루비 객체.object_id <br> 000000</b> 
+
+Note:
+한국 사람들은 태어날때 부터 정해지는 고유한 정보인  주민등록번호를 하나씩 다 가지고 있다.  
+주민 번호를 이용해 이 사람이 어떤 사람인지 안다.  
+그리고 루비 객체는 생성될 때 부터 각자의 id를 하나씩 다 가지고 있다.  
+그런데 특이하게 루비에서 심볼은 여러번 선언해도 하나의 id값만 갖는다.  
+이걸 이용서 루비는 이 객체가 어떤 객체인지 알아낸다
+
+~!~
+
+<table>
+  <tr>
+    <td><img src="images/identical-twin.png" alt=""></td>
+    <td><img src="images/identical-twin.png" alt=""></td>
+  </tr>
+  <tr>
+    <td><b>xxxxxx-xxxxxx1</b></td>
+    <td><b>xxxxxx-xxxxxx2</b></td>
+  </tr>
+</table>
+
+Note:
+그러면 심볼을 왜 사용하나.  
+일란성 쌍둥이가 있다.  
+이 쌍둥이는 서로 다른 주민번호를 가지고 있을 것이다.  
+그러나 두 쌍둥이는 유전적으로 같을 것이고 필요에 의해 유전자 검사를 했을때 같다고 나올 것이다.  
+
+~!~
+
+<table>
+  <tr>
+    <td><img src="images/suzi.jpg" alt=""></td>
+    <td><img src="images/suzi.jpg" alt=""></td>
+  </tr>
+  <tr>
+    <td><b>xxxxxx-xxxxxx3</b></td>
+    <td><b>xxxxxx-xxxxxx3</b></td>
+  </tr>
+</table>
+
+Note:
+그리고 여기에 어떤 한 사람의 두장의 사진이 있다.  
+두 장의 사진에는 주민번호가 적혀있고 이걸 통해 이 두사진의 사람이 같은지 검사하려고 한다.  
+우리는 간단한 주민번호 대조를 통해 두 사람이 같은지 확인 할 수 있다.  
+
+유전자 검사는 많은 시간과 비용이 소모되지만, 단순 주민번호 확인은 아주 적인 시간이 소모된다.  
+여기서 심볼을 사용하는 이유를 알 수 있다.
+
+~!~
+
+```ruby
+2.3.0 :001 > "Object".object_id
+ => 8895920 
+2.3.0 :002 > "Object".object_id
+ => 8894160 
+2.3.0 :003 > :symbol.object_id
+ => 802268 
+2.3.0 :004 > :symbol.object_id
+ => 802268 
+```
+
+Note:
+다시한번 이전 소스코드를 보자  
+소스코드에서 문자열은 다른 id값을 같지만 심볼은 같은 id값을 갖는것을 확인할 수 있었다.  
+만약 두 문자열을 같은지 다른지 비교하면 유전자 검사하듯이 문자열 하나하나가 같은지 비교한 뒤에야 그 여부를 알 수 있을 것이다.  
+그러나 심볼을 비교하려면 심볼은 이름이 같으면 하나의 id값을 가지기 때문에 주민번호인 id 값만을 비교하면 된다.  
+루비나 다른 언어에서도 마찬가지이지만 문자열 비교는 정말 많이 일어나는 일이고 루비에서는 이 문자열 비교에 대한 비용을 줄이기 위해 심볼을 사용한다는 것을 알 수 있다.  
+
+~!~
+
+```ruby
+2.3.0 :001 > h = {"abcde":1, "abcdef":2}
+ => {:a=>1, :b=>2} 
+2.3.0 :002 > h[:abcde]
+ => 1 
+2.3.0 :003 > h["abcde"]
+ => nil 
+```
+Note:
+그 예로 들면 그래서 루비에서는 해시를 사요할 때 키 값이 자동으로 심볼로 변환이 된다.  
+만약 심볼로 변환이 되지 않고 문자열 그대로 되었을 경우 키값을 찾을때 많은 비용이 소모될 것이다.  
+
+~!@!~
+
+## encapsulation
+
+Note:
+
+~!~
+
+캡슐화  
+
+객체지향의 핵심 개념 중 하나
+
+~!~
+
+```ruby
+class Account
+  def initialize(name, money)
+    @name = name
+    @money = money
+  end
+  def print_name
+    puts "통장 주인은 #{@name}입니다."
+  end
+  def input_money(money)
+    @money = @money + money
+    print_information(money)
+  end
+  def print_information(money)
+    puts "#{money}가 입금 되었습니다."
+  end
+end
+```
+
+Note:
+print_information은 해당 정보를 통장에 찍어준다고 생각
+
+~!~
+
+```ruby
+2.3.0 :020 > acc = Account.new("sol",1000)
+ => #<Account:0x00000001e1fc48 @name="sol", @money=1000> 
+2.3.0 :021 > acc.print_name
+ 통장 주인은 sol입니다.
+ => nil 
+2.3.0 :022 > acc.input_money(100)
+ 100가 입금 되었습니다.
+ => nil 
+2.3.0 :023 > acc.print_information(200)
+ 200가 입금 되었습니다.
+ => nil 
+```
+
+Note:
+다른 개발자가 `print_information`을 호출해 버림  
+문제가 됨
+
+~!~
+
+> 캡슐화는 객체 지향 프로그래밍에서 다음 2가지 측면이 있다  
+>
+>객체의 **속성**(data fields)과 **행위**(methods)를 **하나로 묶고**,
+>실제 구현 **내용 일부를** 외부에 감추어 **은닉**한다.
+>
+>**출처** 위키피디아
+
+
+Note:
+
+방어 코드
+접근 제한 코드 
+
+~!~
+
+### 루비 메서드 접근 제한자
+
+```ruby
+class MyClass
+  def method1    # 기본 접근제어는 "public"이다.
+  end
+
+  protected        # 이제부터 선언하는 메서드는 모두 "protected" 이다. 
+  def method2
+  end
+
+  private             # 이제부터 선언하는 메서드는 모두 "private" 이다. 
+  def method3
+  end
+
+  public              # 이제부터 선언하는 메서드는 모두 "public" 이다. 
+  def method4
+  end
+end
+```
+
+~!~
+
+```ruby
+class Account
+  def initialize(name, money)
+    @name = name
+    @money = money
+  end
+  def print_name
+    puts "통장 주인은 #{@name}입니다."
+  end
+  def input_money(money)
+    @money = @money + money
+    print_information(money)
+  end
+
+  private
+  def print_information(money)
+    puts "#{money}가 입금 되었습니다."
+  end
+end
+```
+Note:
+private로 바꿈
+
+~!~
+
+```ruby
+2.3.0 :020 > acc = Account.new("sol",1000)
+ => #<Account:0x00000001e1fc48 @name="sol", @money=1000> 
+2.3.0 :021 > acc.print_name
+ 통장 주인은 sol입니다.
+ => nil 
+2.3.0 :022 > acc.input_money(100)
+ 100가 입금 되었습니다.
+ => nil 
+2.3.0 :023 > acc.print_information(200)
+NoMethodError: private method `print_information' called for #<Account:0x00000000c4a360 @name="sol", @money=1100>
+Did you mean?  print_name
+    from (irb):22
+    from /usr/local/rvm/rubies/ruby-2.3.0/bin/irb:11:in `<main>'
+```
+
+
+~!~
+
+### 참고 : 변수
+
+<style>
+.var_info tr  td {
+  font-size: 2vh !important;
+}
+</style>
+
+<table class="var_info">
+  <tr>
+    <th>var</th>
+    <td>지역 변수</td>
+    <td> - 이름이 소문자나 밑줄(_)로 시작<br>
+      - 인스턴스 변수나 전역변수와는 다르게 초기화전 nil 값을 가지고 있지 않음<br>
+       (NameError 예외 발생)</td>
+  </tr>
+  <tr>
+    <th>@var</th>
+    <td>인스턴스 변수</td>
+    <td> - 변수 영역은 self가 가리키는 객체 내부로 제한 (public이 아님)<br>
+     - 선언이 불가하므로, 처음 값이 대입될 때 동적으로 객체에 추가됨</td>
+  </tr>
+  <tr>
+    <th>@@var</th>
+    <td>클래스 변수</td>
+    <td> - 해당 클래스의 모든 객체가 공유하며, 클래스 메서드를 통해 접근 가능<br>
+     - 사용 전, 반드시 초기화 해야 함 (일반적으로 클래스 정의 시, 간단한 대입문 사용)</td>
+  </tr>
+  <tr>
+    <th>$var</th>
+    <td>전역 변수</td>
+    <td> - 프로그램의 어떠한 곳에서도 사용 가능<br>
+     - 초기화 하지 않은 전역 변수는 nil 값을 지님 </td>
+  </tr>
+</table>
+
+~!@!~
+
+## JSON
+
+~!~
+
+### JavaScript Object Notation
+<br>
+>**속성-값** 쌍으로 이루어진 <br>**데이터 오브젝트**를 전달하기 위해 <br>인간이 읽을 수 있는 **텍스트를 사용**하는 개방형 **표준 포맷**이다.
+>
+>**출처** 위키피디아<br>https://ko.wikipedia.org/wiki/JSON
+
+Note:
+자바스크립트 객체 표기법  
+위키피디아에 잘 나와있음 그거 읽는게 더 도움될 듯
+
+~!~
+
+person.json
+
+```json
+{
+     "이름": "테스트",
+     "나이": 25,
+     "성별": "여",
+     "주소": "서울특별시 양천구 목동",
+     "특기": ["농구", "도술"],
+     "가족관계": {"#": 2, "아버지": "홍판서", "어머니": "춘섬"},
+     "회사": "경기 수원시 팔달구 우만동"
+}
+```
+
+Note:
+JSON은 텍스트로 이루어져 있으므로, 사람과 기계 모두 읽고 쓰기 쉽다.
+프로그래밍 언어와 플랫폼에 독립적이므로, 서로 다른 시스템간에 객체를 교환하기에 좋다.
+자바스크립트의 문법을 채용했기 때문에, 자바스크립트에서 eval 명령으로 곧바로 사용할 수 있다. 
+
+~!~
+
+### ruby hash
+
+```ruby
+car = {:make => "bmw", :year => 2003}
+car = {"make":"bmw", "year":2003}
+car = {"make":"bmw", "year":2003, "mirror":["back","side"]}
+```
+Note:
+문법이 비슷하다 사용법도 비슷함
+
+~!@!~
+
+#END
+          </script>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+        history:true,
+        mouseWheel: true,
+        multiplex: {
+          secret: '', 
+          id: 'b8f3f0304078631b', 
+          url: 'https://reveal-js-multiplex-ccjbegmaii.now.sh'
+        },
+        dependencies: [
+          { src: 'https://cdn.socket.io/socket.io-1.3.5.js', async: true },
+          { src: 'plugin/multiplex/client.js', async: true },
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
