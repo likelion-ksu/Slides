@@ -1,0 +1,429 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Ruby</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+            <div class="slides">
+                <section data-markdown
+                 data-separator="^\n\n\n"
+                 data-separator-vertical="^\n\n"
+                 data-separator-notes="^Note:"
+                 data-charset="iso-8859-15">
+                    <script type="text/template">
+<style>
+h1, h2, h3, h4 {
+    text-transform:none !important;
+}
+</style>
+
+# Ruby
+
+![](images/ruby.png) <!-- .element: style="border-style:hidden" -->
+
+
+
+## 루비를 배우는 이유
+
+<br>
+코딩 느낌! <!-- .element: class="fragment" -->
+
+![](images/rails.jpg) <!-- .element: class="fragment"style="border-style:hidden;-align:center;" -->
+
+
+### 코딩
+
+<br>
+#### 코딩 == 컴퓨터와의 의사소통<!-- .element: class="fragment" -->
+
+![](images/coding.png) <!-- .element: class="fragment"style="border-style:hidden;-align:center;" -->
+
+
+### Test
+
+```ruby
+puts('Hello World')
+```
+
+
+
+## Interpreter, Compiler
+
+
+### Interpreter
+
+```bash
+irb
+```
+
+```bash
+2.3.4 :001 > puts('Hello World')
+Hello World
+ => nil 
+```
+
+
+## Compiler
+
+test.rb
+```ruby
+puts ('Hello World')
+```
+
+```bash
+ruby test.rb
+Hello World
+```
+
+
+### 우리가 알아야 할 건
+
+|Interpreter|Compiler|
+|:-:|:-:|
+|비저장|저장|
+|바로 출력|입출력 함수 사용|
+|빠르게|조금 느리게|
+<!-- .element: class="fragment" -->
+
+
+
+## Variables(변수)
+
+
+어떤 값(박스)에 이름을 달아주는 **Tag**
+
+![](images/tag.jpg)<!-- .element: style="border-style:hidden;-align:center;" -->
+
+
+**=** 은 할당(태깅) 표시
+
+1값을 a에 할당한다  
+(1값에 a라는 이름의 태크를 단다)  <!-- .element: class="fragment" -->
+```ruby
+a = 1
+```
+<!-- .element: class="fragment" -->
+
+
+* 변수명은 _ 또는 문자로 시작
+* 대소문자 구분
+
+```ruby
+a = 1
+b = 2
+B = 3
+puts a + b
+puts b + B
+```
+
+
+변수의 type은 다양하게 존재하지만  
+우리는 숫자형, 문자형만 생각함
+
+```ruby
+'1' != 1
+```
+
+
+
+## Input/Output(입력/출력)
+
+
+**사용자와 컴퓨터간의 의사소통을 위해 사용  **
+
+개발자가 코드를 통해서 <!-- .element: class="fragment" -->
+
+컴퓨터에게 일을 시키면  <!-- .element: class="fragment" -->
+
+그 일에 대해서 연산하고  <!-- .element: class="fragment" -->
+
+스스로 결과를 내지만  <!-- .element: class="fragment" -->
+
+우리가 그 결과에 대한 것은 알 수 없다<!-- .element: class="fragment" -->
+
+
+### puts
+
+```ruby
+a = 1 + 2
+puts a
+```
+<!-- .element: class="fragment" -->
+
+
+### gets
+
+개발자가 아닌 사용자가 직접 값을 넣는다
+
+```ruby
+a = gets
+puts a
+```
+
+
+```ruby
+print "input your name: "
+name = gets.chomp
+print "your name is "
+puts name
+```
+<br>
+.chomp ?
+
+
+
+## Control Flow
+
+
+**연산자**를 통해서  
+프로그램의 **흐름을 변경**시켜  
+**프로그램을 제어**시킴
+
+
+### 연산자
+
+Boolean(true, false) 값을 리턴시킴
+
+* `1 <= 3`
+* `1 > 2`
+* `2 == 2`
+* `2 != 2`
+
+
+주어진 조건에 따라  
+다르게 동작된다고 해서  
+조건문이라 함
+
+
+```ruby
+if (조건)  
+elsif (추가 조건)  
+else (그 외)  
+end (종류)
+```
+
+```ruby
+if 1 > 2
+  puts 'apple'
+elsif 2 > 3
+  puts 'banana'
+else
+  pust 'carrot'
+end
+```
+
+
+
+## Array(배열)
+
+
+* 배열을 이용해 여러 가지 값을 한 변수에 저장하고 사용할 수 있다
+* 순서대로 저장됨
+* 비슷한 성질의 값들을 한꺼번에 처리해서 더욱 편리하게 제어 가능
+
+
+```ruby
+array1 = [1,2,3,4]
+array2 = ['1', '2', '3', '4']
+
+puts array1[1]
+puts array2[1]
+puts array1[0]
+puts array2[0]
+puts array1[3]
+puts array2[4]
+```
+
+
+
+## Hash
+
+
+* 배열과 유사한 데이터 형
+* key(키): value(값)의 쌍으로 이루어짐
+
+
+```ruby
+person = {
+  name: 'sol',
+  age: 26,
+  college: 'ksu'
+}
+
+puts person
+puts person[:name]
+puts person[:age]
+```
+
+
+### Array & Hash
+
+| |Array|Hash|
+|:-:|:-:-|:-:|
+|Key|숫자형|문자형, 심볼형|
+|순서|있음|없음|
+
+
+
+
+## Loop(반복문)
+
+
+puts('Hello World') x 10
+
+```ruby
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+puts('Hello World')
+```
+
+
+컴퓨터는  
+단순하고 반복적인 노동을  
+대신 해주기 위해 존재
+
+```ruby
+10.times do |i|
+  puts 'Hello World'
+end
+```
+
+루비는 읽기 쉽게 만들었지만 사용법이 많다 <!-- .element: class="fragment" -->
+
+
+```ruby
+[1,2,3].each do |i|
+  puts i
+end
+```
+
+```ruby
+for i in [1,2,3]
+  puts "#{i}값"
+end
+```
+...
+
+
+
+## Method(메소드)
+
+
+* 메소드 == 함수(수학과 다르지 않다)
+* 객체(데이터)에 적용되는 함수
+
+```ruby
+print '==='
+a = gets
+print a
+print '==='
+b = gets.chomp
+print b
+print '==='
+```
+
+'\n' ??
+
+
+* .length
+* .append
+* .split
+* .reverse
+* .upcase
+
+
+### 다 외울 필요 없음!
+
+**구글 검색!!!**
+
+
+
+## 직접 해보기
+
+
+### 많이 만들어 볼수록 빨리 늘어요
+
+
+#### 다음과 똑같이 숫자를 입력 받고 출력해 보세요.
+(입력 숫자는 맘대로)
+
+```bash
+1번쨰 숫자를 입력하세요: 123
+2번쨰 숫자를 입력하세요: 456
+3번쨰 숫자를 입력하세요: 12
+4번쨰 숫자를 입력하세요: 13
+5번쨰 숫자를 입력하세요: 23
+당신이 입력한 숫자는 123입니다.
+당신이 입력한 숫자는 456입니다.
+당신이 입력한 숫자는 12입니다.
+당신이 입력한 숫자는 13입니다.
+당신이 입력한 숫자는 23입니다.
+```
+
+
+```ruby
+list = []
+5.times do |i|
+  print("#{i+1}번째 숫자를 입력하세요: ")
+  a = gets.chomp
+  list.append(a)
+end
+
+list.each do |x|
+  puts '당신이 입력한 숫자는 #{x}입니다.'
+end
+```
+
+
+
+# Q & A
+                </script>
+            </div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                history: true,
+                mouseWheel: true,
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
