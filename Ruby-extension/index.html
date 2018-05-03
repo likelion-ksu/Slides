@@ -30,6 +30,7 @@
                  data-separator-notes="^Note:"
                  data-charset="iso-8859-15">
                     <script type="text/template">
+<!-- .element: data-background-image="images/honeyjam.jpg" data-background-size="contain" -->
 <style>
 h1, h2, h3, h4 {
     text-transform:none !important;
@@ -39,7 +40,7 @@ img {
 }
 </style>
 
-# 꿀잼 Ruby
+# 꿀잼? Ruby
 
 
 
@@ -69,6 +70,7 @@ end
 
 ### Array
 
+<br>
 ```ruby
 array1 = [1,2,3,4]
 array2 = ['1', '2', '3', '4']
@@ -129,9 +131,17 @@ end
 ## Method
 
 
-수학에서의 함수
+* 수학에서의 함수
+* 객체(데이터)에 적용되는 함수
 
 ![](images/fx.png)
+
+
+* .length
+* .push
+* .split
+* .reverse
+* .upcase
 
 
 $$
@@ -148,14 +158,14 @@ end
 $$
 f(x) =
 \begin{cases}
-x^2, & \mbox{if }x\mbox{ <= 100} \cr
+x^2, & \mbox{if }x\mbox{ >= 100} \cr
 x \times x, & \mbox{else}
 \end{cases}
 $$
 
 ```ruby
 def f(x)
-  if x <= 100
+  if x >= 100
     return x ** 2
   else
     return x * x
@@ -164,41 +174,373 @@ end
 ```
 
 
+반복적인 작업이나  
+코드를 깔끔 하게 할 때 사용
+
+
+### 직접 해보자!
+
+
+#### 다음과 똑같이 로또 프로그램을 만들어 보세요
+
+<br>
+_ 입력 숫자는 마음대로_  
+
+_(랜덤으로 1에서 45 사이의 값을 주는 배열)_
+
+```ruby
+answer = (1..45).to_a.sample(6).map(&:to_s)
+```
+
+결과
+
+```bash
+$ ruby lotto.rb
+숫자 6개를 입력하세요. 띄어쓰기로 구분하세요.
+1 23 45 12 6 22
+당신이 선택한 숫자는 ["1", "23", "45", "12", "6", "22"]
+당첨 번호는 ["41", "39", "32", "10", "5", "26"]
+맞은 개수는 0
+```
+
+
+#### 꼭 이럴 필요는 없어요
+
+```ruby
+answer = (1..45).to_a.sample(6).map(&:to_s)
+
+puts "숫자 6개를 입력하세요. 띄어쓰기로 구분하세요."
+nums = gets.chomp
+num_array = nums.split(" ")
+
+puts "당신이 선택한 숫자는 #{num_array}"
+puts "당첨 번호는 #{answer}"
+
+count = 0
+
+num_array.each do |num|
+  answer.each do |a|
+    if a == num
+      count += 1
+    end
+  end
+end
+puts "맞은 개수는 #{count}"
+```
+
+
 ### 신이 나를 만들 때
 
+![](images/god.jpg)
+
+
+* 능력, 양 배열 만들기
+* 랜덤으로 몇 개 뽑기(`[].sample(3)`)
+* 레시피라는 hash에 저장해서 사용
+* 이름 입력받기
+* 출력
+
+```bash
+$ ruby god.rb
+이름을 입력하세요: sol
+신이 'sol'을/를 만들 때
+
+먼저 행운을 조금 넣고
+희망도 세 스푼
+마지막으로 잠을 넣으아으아ㅏ으억
+```
+
+
+#### 같이 해보자
+
+
+### 두 프로그램을 합쳐보자
+
+* def를 이용해서 깔끔하게
+
+```bash
+어떤 프로그램을 선택하시겠습니까?
+1. 로또
+2. 신이 나를 만들 때
+입력: 1
+...
+```
+
+
+(45분 정도 걸렸겠지?...)<!-- .element: style="color:grey" -->
 
 
 
-Note:
-## Review
+## Extension
 
-코딩
+
 
 ## Type
 
+
+비슷한 데이터 종류끼리 모아 놓은것(**집합**)
+
+<br>
+* 강솔, 고기훈, 최영진 → **사람**
+* 치와와, 허스키→ **개**
+
+
+* 루비에는 여러가지 타입이 있다  
+  Fixnum, String, Symbol ...
+* 각 타입마다 가진 능력이(메소드) 다르다  
+  * **사람**  
+    말한다  
+    물건을 집는다
+  * **개**  
+    짖는다
+  * **동물**  
+    소리를 낸다
+
+
+* 문자형 → 문자의 집합
+* 숫자형 → 숫자의 집합
+
+<br>
+* "", "123", "1", '1' → String(문자형)
+* 1, 2, 123 → Fixnum(숫자형)
+
+등등
+
+
+.class 메소드를 사용하면 확인 가능
+
+```ruby
+"".class
+123.class
+```
+
+
+
 ## Symbol
 
-## Method
 
-## Object
+심볼이라는 하나의 타입!
 
-### 터미널 irb
 
-### 아헤 1
+```ruby
+2.3.4 :001 > "Object".object_id
+ => 8895920 
+2.3.4 :002 > "Object".object_id
+ => 8894160 
+2.3.4 :003 > :symbol.object_id
+ => 802268 
+2.3.4 :004 > :symbol.object_id
+ => 802268 
+```
 
-### 로또
+Note:
+객체에는 어떤 객체인지 구분하기 위한 id가 하나씩 있다.  
+위의 소스코드는 객체에서 id를 가져오기위한 행위를 하는 코드이다.  
+위에서 스트링으로 만들어진 값의 id는 서로 다른 반면에 심볼로 만들어진 id는 같다는 것만 확인하고 일단 넘어간다.
 
-### 로또 2
 
-### 신이 나를 만들땜
+<b class="fragment">어떤 한국 사람의 주민등록 번호는 <br>xxxxxx - xxxxxxx</b> 
+<hr>
+<b class="fragment"> 루비 객체.object_id <br> 000000</b> 
+
+Note:
+한국 사람들은 태어날때 부터 정해지는 고유한 정보인  주민등록번호를 하나씩 다 가지고 있다.  
+주민 번호를 이용해 이 사람이 어떤 사람인지 안다.  
+그리고 루비 객체는 생성될 때 부터 각자의 id를 하나씩 다 가지고 있다.  
+그런데 특이하게 루비에서 심볼은 여러번 선언해도 하나의 id값만 갖는다.  
+이걸 이용서 루비는 이 객체가 어떤 객체인지 알아낸다
+
+
+<table>
+  <tr>
+    <td><img src="images/identical-twin.png" alt=""></td>
+    <td><img src="images/identical-twin.png" alt=""></td>
+  </tr>
+  <tr>
+    <td><b>xxxxxx-xxxxxx1</b></td>
+    <td><b>xxxxxx-xxxxxx2</b></td>
+  </tr>
+</table>
+
+Note:
+그러면 심볼을 왜 사용하나.  
+일란성 쌍둥이가 있다.  
+이 쌍둥이는 서로 다른 주민번호를 가지고 있을 것이다.  
+그러나 두 쌍둥이는 유전적으로 같을 것이고 필요에 의해 유전자 검사를 했을때 같다고 나올 것이다.  
+
+
+<table>
+  <tr>
+    <td><img src="images/suzi.jpg" alt=""></td>
+    <td><img src="images/suzi.jpg" alt=""></td>
+  </tr>
+  <tr>
+    <td><b>xxxxxx-xxxxxx3</b></td>
+    <td><b>xxxxxx-xxxxxx3</b></td>
+  </tr>
+</table>
+
+Note:
+그리고 여기에 어떤 한 사람의 두장의 사진이 있다.  
+두 장의 사진에는 주민번호가 적혀있고 이걸 통해 이 두사진의 사람이 같은지 검사하려고 한다.  
+우리는 간단한 주민번호 대조를 통해 두 사람이 같은지 확인 할 수 있다.  
+
+유전자 검사는 많은 시간과 비용이 소모되지만, 단순 주민번호 확인은 아주 적인 시간이 소모된다.  
+여기서 심볼을 사용하는 이유를 알 수 있다.
+
+
+```ruby
+2.3.4 :001 > "Object".object_id
+ => 8895920 
+2.3.4 :002 > "Object".object_id
+ => 8894160 
+2.3.4 :003 > :symbol.object_id
+ => 802268 
+2.3.4 :004 > :symbol.object_id
+ => 802268 
+```
+
+Note:
+다시한번 이전 소스코드를 보자  
+소스코드에서 문자열은 다른 id값을 같지만 심볼은 같은 id값을 갖는것을 확인할 수 있었다.  
+만약 두 문자열을 같은지 다른지 비교하면 유전자 검사하듯이 문자열 하나하나가 같은지 비교한 뒤에야 그 여부를 알 수 있을 것이다.  
+그러나 심볼을 비교하려면 심볼은 이름이 같으면 하나의 id값을 가지기 때문에 주민번호인 id 값만을 비교하면 된다.  
+루비나 다른 언어에서도 마찬가지이지만 문자열 비교는 정말 많이 일어나는 일이고 루비에서는 이 문자열 비교에 대한 비용을 줄이기 위해 심볼을 사용한다는 것을 알 수 있다.  
+
+
+```ruby
+2.3.4 :001 > h = {"abcde":1, "abcdef":2}
+ => {:a=>1, :b=>2} 
+2.3.4 :002 > h[:abcde]
+ => 1 
+2.3.4 :003 > h["abcde"]
+ => nil 
+```
+Note:
+그 예로 들면 그래서 루비에서는 해시를 사요할 때 키 값이 자동으로 심볼로 변환이 된다.  
+만약 심볼로 변환이 되지 않고 문자열 그대로 되었을 경우 키값을 찾을때 많은 비용이 소모될 것이다.
+
+
+
+
+## Gem
+
+
+다른 사람들이 만들어 놓은 코드를  
+사용하기 쉽게 설치하는 프로그램
+
 
 ### 크롤링
 
-## 프로그램 합치기
+웹 페이지에서 데이터를 추출하는 것
+
+
+### Nokogiri
+
+<br>
+```bash
+$ gem instsall Nokogiri
+```
+
+```ruby
+require 'nokogiri'
+require 'uri-open'
+
+doc = Nokogiri::HTML(open("url주소"))
+doc.css(크롤링하고싶은 요소)
+```
+
+
+#### 네이버를 크롤링 해보자
+
+<br>
+```ruby
+require 'nokogiri'
+require 'open-uri'
+
+doc = Nokogiri::HTML(open('https://www.naver.com'))a
+print doc
+```
+
+```ruby
+# doc = doc.css('h3.hit')
+# doc = doc.css('h3>span')
+doc = doc.css('h3')
+doc.each do |h|
+  print h
+  # print h.content
+  # print h.css("span")
+  puts
+end
+```
+
+
+### 직접 해보자!
+
+
+#### 네이버 실시간 검색 크롤링
+
+* 개발자 도구로 css 속성 잘 참고하기
+
+_아래와 같이 나오게_
+
+```bash
+$ ruby naver.rb
+피파온라인4
+광주 폭행
+하승리
+부산날씨
+신영복
+우박
+강길부
+성신여대 사학과 교수
+한정원
+하지원 나이
+청와대 국민청원
+하지원
+아파트투유
+전두환
+김정현
+2018 백상예술대상
+47미터
+이디야 커피
+성신여대 미투
+로맨스 패키지
+```
+
+
+```ruby
+require 'nokogiri'
+require 'open-uri'
+
+doc = Nokogiri::HTML(open('https://www.naver.com'))
+
+doc.css(".ah_roll>div.ah_roll_area>ul.ah_l>li").each do |li|
+  puts li.css("a>span")[1].content
+end
+```
+
+
+#### 실제 로또 번호 크롤링해서 입력 값과 비교하기
+
+<br>
+* 이전에 했던 로또 번호를 받아오는  
+  random 부분을 크롤링 부분으로 바꾸자
+* https://search.naver.com/search.naver?ie=UTF-8&query=%EB%A1%9C%EB%98%90&sm=chr_hty
+
+
+#### 같이 해보기
 
 
 
 # Q & A
+
+
+
+# 과제
+
+* 시간상 못 한 것들
+* 자유롭게 원하는 사이트 크롤링!
                 </script>
             </div>
 		</div>
