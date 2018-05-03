@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Ruby extension</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+            <div class="slides">
+                <section data-markdown
+                 data-separator="^\n\n\n"
+                 data-separator-vertical="^\n\n"
+                 data-separator-notes="^Note:"
+                 data-charset="iso-8859-15">
+                    <script type="text/template">
+<style>
+h1, h2, h3, h4 {
+    text-transform:none !important;
+}
+img {
+    border-style:hidden !important;
+}
+</style>
+
+# 꿀잼 Ruby
+
+
+
+## Review
+
+
+### 코딩
+
+<br>
+#### 코딩 == 컴퓨터와의 의사소통<!-- .element: class="fragment" -->
+
+![](images/coding.png) <!-- .element: class="fragment"style="border-style:hidden;-align:center;" -->
+
+
+### Control Flow
+
+```ruby
+if 1 > 2
+  puts 'apple'
+elsif 2 > 3
+  puts 'banana'
+else
+  pust 'carrot'
+end
+```
+
+
+### Array
+
+```ruby
+array1 = [1,2,3,4]
+array2 = ['1', '2', '3', '4']
+
+puts array1[1]
+puts array2[1]
+puts array1[0]
+puts array2[0]
+puts array1[3]
+puts array2[4]
+```
+
+
+### Hash
+
+```ruby
+person = {
+  name: 'sol',
+  age: 26,
+  college: 'ksu'
+}
+
+puts person
+puts person[:name]
+puts person[:age]
+```
+
+
+### Array & Hash
+
+| |Array|Hash|
+|:-:|:-:-|:-:|
+|Key|숫자형|문자형, 심볼형|
+|순서|있음|없음|
+
+
+## Loop
+
+```ruby
+10.times do |i|
+  puts 'Hello World'
+end
+```
+
+```ruby
+[1,2,3].each do |i|
+  puts i
+end
+```
+
+```ruby
+for i in [1,2,3]
+  puts "#{i}값"
+end
+```
+
+
+## Method
+
+
+수학에서의 함수
+
+![](images/fx.png)
+
+
+$$
+f(x) = x + 1
+$$
+
+```ruby
+def f(x)
+  x + 1
+end
+```
+
+
+$$
+f(x) =
+\begin{cases}
+x^2, & \mbox{if }x\mbox{ <= 100} \cr
+x \times x, & \mbox{else}
+\end{cases}
+$$
+
+```ruby
+def f(x)
+  if x <= 100
+    return x ** 2
+  else
+    return x * x
+  end
+end
+```
+
+
+### 신이 나를 만들 때
+
+
+
+
+Note:
+## Review
+
+코딩
+
+## Type
+
+## Symbol
+
+## Method
+
+## Object
+
+### 터미널 irb
+
+### 아헤 1
+
+### 로또
+
+### 로또 2
+
+### 신이 나를 만들땜
+
+### 크롤링
+
+## 프로그램 합치기
+
+
+
+# Q & A
+                </script>
+            </div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                history: true,
+                mouseWheel: true,
+                math: {
+                    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
