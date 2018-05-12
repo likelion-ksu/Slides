@@ -158,7 +158,7 @@ end
 $$
 f(x) =
 \begin{cases}
-x^2, & \mbox{if }x\mbox{ >= 100} \cr
+x + x, & \mbox{if }x\mbox{ >= 100} \cr
 x \times x, & \mbox{else}
 \end{cases}
 $$
@@ -166,7 +166,7 @@ $$
 ```ruby
 def f(x)
   if x >= 100
-    return x ** 2
+    return x + x
   else
     return x * x
   end
@@ -439,12 +439,12 @@ Note:
 
 <br>
 ```bash
-$ gem instsall Nokogiri
+$ gem install nokogiri
 ```
 
 ```ruby
 require 'nokogiri'
-require 'uri-open'
+require 'open-uri'
 
 doc = Nokogiri::HTML(open("url주소"))
 doc.css(크롤링하고싶은 요소)
@@ -481,8 +481,7 @@ end
 #### 네이버 실시간 검색 크롤링
 
 * 개발자 도구로 css 속성 잘 참고하기
-
-_아래와 같이 나오게_
+* 아래와 같이 나오게
 
 ```bash
 $ ruby naver.rb
