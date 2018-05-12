@@ -525,6 +525,11 @@ end
 * 이전에 했던 로또 번호를 받아오는  
   random 부분을 크롤링 부분으로 바꾸자
 * https://search.naver.com/search.naver?ie=UTF-8&query=%EB%A1%9C%EB%98%90&sm=chr_hty
+* 아래의 코드를 이용해 크롤링 할 것
+
+```ruby
+doc = Nokogiri::HTML(open('https://search.naver.com/search.naver?ie=UTF-8&query=%EB%A1%9C%EB%98%90&sm=chr_hty', 'User-Agent' => 'firefox'))
+```
 
 
 #### 같이 해보기
