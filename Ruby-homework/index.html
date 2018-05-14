@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Ruby homework</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+            <div class="slides">
+                <section data-markdown
+                 data-separator="^\n\n\n"
+                 data-separator-vertical="^\n\n"
+                 data-separator-notes="^Note:"
+                 data-charset="iso-8859-15">
+                    <script type="text/template">
+<!-- .element: data-background-image="images/jam.jpg" data-background-size="contain" -->
+<style>
+h1, h2, h3, h4 {
+    text-transform:none !important;
+}
+img {
+    border-style:hidden !important;
+}
+</style>
+
+
+
+## 신이 나를 만들 때
+
+<br>
+![](images/god.jpg)
+
+
+* 능력, 양 배열 만들기
+* 랜덤으로 몇 개 뽑기(`[].sample(3)`)
+* 이름 입력받기
+* 출력
+
+```bash
+$ ruby god.rb
+이름을 입력하세요: sol
+신이 sol을/를 만들 때
+
+먼저 행운을 조금 넣고
+희망도 세 스푼
+마지막으로 잠을 넣으아으아ㅏ으억
+```
+
+
+### 같이 해보자
+
+
+```ruby
+ability = ['행운','희망','재미','잠','인기', '자존심', '귀염']
+amount = ['한 스푼', ' 두 스푼' , ' 조금', '많이', ' 으어어어엉ㅋ', '적당히']
+
+print "이름을 입력하세요: "
+name = gets.chomp
+
+selected_ablitiy = ability.sample(3)
+selected_amount = amount.sample(3)
+
+puts "신이 #{name}을 만들 때"
+
+puts "먼저 #{selected_ablitiy[0]}을 #{selected_amount[0]} 넣고"
+puts "#{selected_ablitiy[1]}도 #{selected_amount[1]} 넣고"
+puts "마지막으로 #{selected_ablitiy[2]}을 #{selected_amount[2]} 넣자"
+```
+
+
+
+## 두 프로그램을 합쳐보자
+
+<br>
+* def를 이용해서 깔끔하게
+
+```bash
+어떤 프로그램을 선택하시겠습니까?
+1. 로또
+2. 신이 나를 만들 때
+입력: 1
+...
+```
+
+
+### 같이 해보자
+
+
+```ruby
+def lotto
+...
+end
+def god
+...
+end
+
+puts "어떤 프로그램을 선택하시겠습니까?"
+puts "1. 로또"
+puts "2. 신이 나를 만들 때"
+print "입력: "
+sel = gets.chomp
+
+if sel == "1"
+    lotto
+elsif sel == "2"
+    god
+end
+```
+
+
+### 숫자 비교
+
+```ruby
+if sel.to_i == 1
+    lotto
+elsif sel.to_i == 1
+    god
+end
+```
+
+
+
+## 실제 로또 번호 크롤링해서 입력 값과 비교하기
+
+<br>
+* 이전에 했던 로또 번호를 받아오는  
+  random 부분을 크롤링 부분으로 바꾸자
+* https://search.naver.com/search.naver?ie=UTF-8&query=%EB%A1%9C%EB%98%90&sm=chr_hty
+* 아래의 코드를 이용해 크롤링 할 것
+
+```ruby
+doc = Nokogiri::HTML(open('https://search.naver.com/search.naver?ie=UTF-8&query=%EB%A1%9C%EB%98%90&sm=chr_hty', 'User-Agent' => 'firefox'))
+```
+
+
+### 같이 해보기
+
+
+```ruby
+require 'nokogiri'
+require 'open-uri'
+
+doc = Nokogiri::HTML(open('https://search.naver.com/search.naver?ie=UTF-8&query=%EB%A1%9C%EB%98%90&sm=chr_hty', 'User-Agent' => 'firefox'))
+
+span_list = doc.css('.lotto_wrap>.num_box>span')
+
+answer = []
+
+for span in span_list
+  if span.content != "보너스번호"
+    answer.push(span.content)
+  end
+end
+...
+```
+
+
+### 예외 처리
+
+1. 사용자가 6개 외의 값 입력 가능하다
+2. 1 ~ 45 외의 값 입력 가능하다
+
+... 등등등
+
+
+#### 사용자가 6개 외의 값 입력 가능하다
+
+```ruby
+if num_array.length != 6
+  puts "여섯개의 숫자를 입력해 주세요!"
+  return
+end
+```
+
+
+#### 1 ~ 45 외의 값 입력 가능하다 
+```ruby
+count = 0
+isFinish = true
+num_array.each do |num|
+  if (1..45).to_a.map(&:to_s).include? num
+    answer.each do |a|
+      if a == num
+        count += 1
+      end
+    end
+  else
+    puts "1~45 사이의 값을 입력해 주세요"
+    isFinish = false
+    break
+  end
+end
+
+if isFinish == false
+  return
+end
+
+puts "당첨 번호는 #{answer}"
+puts "맞은 개수는 #{count}"
+```
+
+
+이렇게 사용자가 **사용하기 쉽게**  
+여러 **예외를 처리**하는것도 중요하다
+
+
+
+## 원하는 사이트 크롤링
+
+
+### 한번 보자
+
+
+
+# Q & A
+
+
+
+# 과제
+
+<br>
+### 지금 까지 만든 프로그램에서 
+### 예외 처리 또는 기능 추가를 해보자
+
+<br>
+* 중복된 숫자 처리
+* 반복시키기
+* 등등
+                </script>
+            </div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                history: true,
+                mouseWheel: true,
+                math: {
+                    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
