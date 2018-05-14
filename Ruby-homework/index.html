@@ -136,6 +136,61 @@ end
 ```
 
 
+### 최종코드
+
+```ruby
+def lotto()
+    answer = (1..45).to_a.sample(6).map(&:to_s)
+
+    puts "숫자 6개를 입력하세요. 띄어쓰기로 구분하세요."
+    nums = gets.chomp
+    num_array = nums.split(" ")
+    
+    puts "당신이 선택한 숫자는 #{num_array}"
+    puts "당첨 번호는 #{answer}"
+    
+    count = 0
+    
+    num_array.each do |num|
+      answer.each do |a|
+        if a == num
+          count += 1
+        end
+      end
+    end
+    puts "맞은 개수는 #{count}"
+end
+
+def god
+    ability = ['자존심', '유머감각','인기','재미']
+    amount = ['한 스푼', '다섯 스푼', '많이', '조금', '으어어어엉ㅋ']
+    selected_ability = ability.sample(3)
+    selected_amount = amount.sample(3)
+    
+    print "이름을 입력하세요: "
+    name = gets.chomp
+    
+    puts "신이 #{name}을/를 만들 때"
+    puts
+    puts "먼저 #{selected_ability[0]}을 #{selected_amount[0]}넣고"
+    puts "#{selected_ability[1]}도 #{selected_amount[1]}"
+    puts "마지막으로 #{selected_ability[2]}을 #{selected_amount[2]} 넣자!"
+end
+
+puts "어떤 프로그램을 선택하시겠습니까?"
+puts "1. 로또"
+puts "2. 신이 나를 만들 때"
+print "입력: "
+sel = gets.chomp
+
+if sel.to_i == 1
+    lotto()
+elsif sel.to_i == 2
+    god
+end
+```
+
+
 
 ## 실제 로또 번호 크롤링해서 입력 값과 비교하기
 
