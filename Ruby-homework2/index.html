@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Ruby homework 2(with user)</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+            <div class="slides">
+                <section data-markdown
+                 data-separator="^\n\n\n"
+                 data-separator-vertical="^\n\n"
+                 data-separator-notes="^Note:"
+                 data-charset="iso-8859-15">
+                    <script type="text/template">
+<!-- .element: data-background-image="images/user.svg" data-background-size="contain" -->
+<style>
+h1, h2, h3, h4 {
+    text-transform:none !important;
+}
+img {
+    border-style:hidden !important;
+}
+</style>
+
+# Ruby with user
+
+
+
+## 중복된 숫자 처리
+
+
+### 같이 해보기
+
+
+```ruby
+count = 0
+error = false
+check_num = []
+
+num_array.each do |num|
+    if check_num.include?(num)
+        puts ("중복된 값이 있습니다.")
+        error = true
+        break;
+    else
+        check_num.push(num)
+        if (1..45).to_a.map(&:to_s).include?(num)
+            answer.each do |a|
+                if a == num
+                  count += 1    
+                end
+            end
+        else
+            puts ("1~45의 값이 없습니다!!!")
+            error = true
+            break
+        end
+    end
+end
+
+if error
+    return
+end
+```
+
+
+
+## 반복시키기
+
+
+### 같이 해보기
+
+
+```ruby
+while true
+    puts "어떤 프로그램을 선택하시겠습니까?"
+    puts "1. 로또"
+    puts "2. 신이 나를 만들 때"
+    puts "3 나가기"
+    print "입력: "
+    sel = gets.chomp
+    
+    if sel.to_i == 1
+        lotto()
+    elsif sel.to_i == 2
+        god
+    elsif sel.to_i == 3
+        break
+    end
+    puts "======="
+end
+```
+
+
+
+## 등등
+
+
+### 조금 더 사용자에게 직관적인 예외 문구
+
+
+![](images/404.png)
+
+
+![](images/404-simple.jpg)
+
+
+![](images/404-google.jpg)
+
+
+![](images/404-cute.jpg)
+
+
+![](images/404-naver.png)
+
+
+#### 프로그램 선택
+
+```ruby
+if sel.to_i == 1
+    lotto
+elsif sel.to_i == 2
+    god
+elsif sel.to_i == 3
+    break
+else
+    puts "잘못 된 값을 입력하셨습니다."
+end
+```
+
+
+#### 로또 예외
+
+```ruby
+if num_array.length != 6
+    puts "#{num_array.length}개의 숫자를 입력하셨습니다."
+    puts "6개의 숫자만 입력 가능합니다!!"
+    puts "프로그램을 종료합니다"
+    return
+end
+```
+```ruby
+num_array.each do |num|
+    if check_num.include?(num)
+        puts "#{num}번 번호가 중복되었습니다"
+        puts "중복된 번호은 입력하실 수 업습니다"
+        puts "프로그램을 종료합니다"
+        error = true
+        break;
+    else
+        check_num.push(num)
+        if (1..45).to_a.map(&:to_s).include?(num)
+            answer.each do |a|
+                if a == num
+                  count += 1    
+                end
+            end
+        else
+            puts "#{num}값이 잘못되었습니다."
+            puts "1~45의 값을 입력해야 합니다"
+            puts "프로그램을 종료합니다"
+            error = true
+            break
+        end
+    end
+end
+```
+
+
+
+## 더 좋은 코드?
+
+
+### 메서드 화(化)
+
+* 한눈에 한번에 알기 힘들다
+* 중복되는 것이 있다
+
+
+```ruby
+def check_six_length(num_array)
+    if num_array.length != 6
+        puts "#{num_array.length}개의 숫자를 입력하셨습니다."
+        puts "6개의 숫자만 입력 가능합니다!!"
+        puts "프로그램을 종료합니다"
+        return false
+    end
+    true
+end
+
+def check_not_overlap(check_num, num)
+    if check_num.include?(num)
+        puts "#{num}번 번호가 중복되었습니다"
+        puts "중복된 번호은 입력하실 수 업습니다"
+        puts "프로그램을 종료합니다"
+        return  false
+    end
+    true
+end
+
+def check_allowed_num(num)
+    unless (1..45).to_a.map(&:to_s).include?(num)
+        puts "#{num}값이 잘못되었습니다."
+        puts "1~45의 값을 입력해야 합니다"
+        puts "프로그램을 종료합니다"
+        return false
+    end
+    true
+end
+```
+
+
+```ruby
+num_array.each do |num|
+        unless check_not_overlap(check_num, num) and check_allowed_num(num)
+        error = true
+        break;
+    else
+        check_num.push(num)
+        answer.each do |a|
+            if a == num
+              count += 1    
+            end
+        end
+    end
+end
+```
+
+
+```ruby
+if answer.include?(num)
+    count += 1    
+end
+```
+
+
+#### 정답은 없다
+
+
+## 더 효율적인 방법
+
+* 남들이 잘 짜놓은 것들을 가져다 붙이면 더 좋음
+
+
+Note:
+중간중간에 처리하는 것 보다 예외는 한번에 처리하는것이 더 처리하기 좋다
+
+
+### 중복된 숫자 처리
+
+
+```ruby
+
+```
+Note:
+count - check_num 선언 불필요
+set으로 바꾸는 방법
+
+### 매칭
+
+
+### 1 ~ 45 외의 값 입력
+
+map을 쓰는 방
+
+# Q & A
+
+### 정답 갯수 세기
+
+
+
+## 과제
+
+* 코드를 깔끔하게 만들어 보기
+                </script>
+            </div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                history: true,
+                mouseWheel: true,
+                math: {
+                    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+                    config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/math/math.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
