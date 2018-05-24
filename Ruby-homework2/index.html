@@ -406,6 +406,8 @@ puts "맞은 개수는 #{count}"
 #### check
 
 
+`lotto_check.rb`
+
 ```ruby
 module Lotto_check
     def Lotto_check.check_six_length(num_array)
@@ -446,6 +448,8 @@ end
 
 ##### 조금 더 깔끔하고 독립적이게
 
+
+`lotto_check.rb`
 
 ```ruby
 module Lotto_check
@@ -492,6 +496,8 @@ end
 #### crawling
 
 
+`lotto_crawling.rb`
+
 ```ruby
 require 'nokogiri'
 require 'open-uri'
@@ -517,6 +523,7 @@ end
 
 #### 최종 소스코드
 
+`lotto.rb`
 
 ```ruby
 require './lotto_check'
@@ -543,6 +550,14 @@ puts "맞은 개수는 #{count}"
 `lotto.rb`파일에는 오로지 몇 개의 로또가 맞는지 검사하는 부분만 있다  
 ->  
 모듈화를 통해 필요한 부분만 분산해서 개발 가능
+
+
+### 최송 소스 코드
+
+<br>
+[프로그램 합치기](https://gist.github.com/5pecia1/7e890ba6734d6ca991cf426042dc049e#file-combine-rb)
+
+[lotto](https://gist.github.com/5pecia1/7e890ba6734d6ca991cf426042dc049e#file-lotto-rb)
 
 
 
