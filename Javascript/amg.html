@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var cnt = 0;    
+        function delete_row(btn) {
+            var row = btn.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+        function new_text(){
+            var table = document.getElementById("my_tablea");
+            var row = table.insertRow(0);
+            cnt++;
+            row.setAttribute("id",cnt);
+            var button = document.createElement('button');
+            row.insertCell(0).innerHTML = row.getAttribute("id");
+            row.insertCell(1).innerHTML = document.getElementById("new_user").value;
+            row.insertCell(2).innerHTML = document.getElementById("new_content").value;
+            row.insertCell(3).innerHTML = Date();
+            row.insertCell(4).innerHTML = '<button onclick="delete_row(this)">삭제</div>';
+        }
+    </script>
+</head>
+<body>
+    
+    <h1>게시판</h1>
+    글쓴이 : <input id = "new_user" type = "text" name = "글쓴이">
+    내용 : <input id = "new_content" type = "text" name = "내용"> 
+    <button onclick="new_text()">글쓰기</button>
+
+  
+    <table border="1" id="my_table">
+        <tr>
+            <th>번호</th>
+            <th>글쓴이</th>
+            <th>내용</th>
+            <th>올린 시간</th>
+            <th>삭제</th>
+        </tr>
+        <tbody id="my_tablea">
+
+        </tbody>
+    </table>
+</body>
+</html>

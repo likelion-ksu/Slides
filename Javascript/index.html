@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>JS</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+      function clickHandler() {
+        alert("Hello, World!");
+      }
+      function keypressHandler() {
+        alert ("Hello, World!");
+      }
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+        <section data-markdown
+                 data-separator="^~!@!~"
+                 data-separator-vertical="^~!~"
+                 data-separator-notes="^Note:">
+          <script type="text/template">
+<style>
+img {
+  border-style: hidden !important;
+}
+
+</style>
+
+# Java <!--.element: style="float:right;"-->
+![](images/js.png)<!--.element: style="float:left;"-->
+# Script<!--.element: style="float:right;"-->
+
+
+~!@!~
+java script?<br>
+mongodb couchdb  node.js reveal.js
+
+~!~
+웹페이지 내용을 정하는 html<br>
+웹페이지 내용을 꾸미는 css<br>
+웹페이지 내용을 동작하게 하는 js<br>
+
+
+~!@!~
+변수 
+
+~!~
+## let<br>
+정의된 지점부터 포함된 블록 안에서만 사용가능
+```
+// myLetVariable는 여기에서 보이지 *않습니다*
+
+for (let myLetVariable = 0; myLetVariable < 5; myLetVariable++) {
+  // myLetVariable는 여기에서 유효합니다
+}
+
+// myLetVariable는 여기에서 보이지 *않습니다*
+```
+~!~
+## const<br>
+값이 변경되지 않는 변수를 선언 (상수)
+```
+const Pi = 3.14; // 변수 Pi 설정 
+Pi = 1; // 상수로 설정된 변수는 변경 할 수 없기 때문에 애러 발생.
+```
+~!~
+## var<br>
+가장 일반적인 변수
+전체에서 사용가능
+```
+// myVarVariable는 여기에서 사용 할 수 *있습니다* 
+
+for (var myVarVariable = 0; myVarVariable < 5; myVarVariable++) { 
+  // myVarVariable는 함수 전체에서 사용 할 수 있습니다. 
+} 
+
+// myVarVariable는 여기에서 사용 할 수 *있습니다*
+```
+
+~!@!~
+객체 
+~!~
+객체 생성의 2가지 방법
+```
+var obj = new Object();
+```
+```
+var obj = {};
+```
+~!~
+객체 속성 접근 
+```
+obj.name = "Simon"
+var name = obj.name;
+```
+```
+obj["name"] = "Simon";
+var name = obj["name"];
+```
+~!~
+객체와 배열 
+```
+var arr = [];
+var obj = {};
+```
+~!~
+비교연산자
+```
+1 == '1'  //true
+1 === '1' //false
+```
+== 데이터 타입이 다른경우 타입을 일치 시켜 비교<br>
+=== 있는 그대로 비교
+~!@!~
+함수
+```
+function myFunction(매개변수) {
+  return a * b;
+}
+```
+~!~
+반복문 
+for문 
+```
+for (var i = 0; i < 10; i++) {
+  alert(i);
+}
+```
+~!~
+while문
+```
+var i = 0;
+while (i < 10) {
+  alert(i);
+  i++;
+}
+```
+~!@!~
+dom
+~!~
+dom 이란<br>
+html 에서 정보를 가져오거나 변경하거나 추가하거나 삭제하는 방법
+
+~!~
+찾기!<br>
+document.getElementById(id) 아이디 찾기<br>
+document.getElementByTagName(name) 태그이름 찾기<br>
+document.getElementByClassName(name) 클래스이름 찾기<br>
+~!~
+element.innerHTML = 태그의 내용 변경<br>
+element.attribute = 애트리뷰트 값 변경<br>
+element.setAttribute(att,value) = 애트리뷰트 값 변경<br>
+element.style.property = 스타일 변경<br>
+~!~
+이벤트 추가<br>
+document.getElementById(id).onclick = function(){code}
+~!~
+마우스 이벤트 종류<br>
+Click - 사용자가 마우스를 클릭했을 때 <br>
+MouseOut - 객체의 그래픽 범위를 떠나려고 할때 <br>
+MouseOver -  객체의 그래픽 범위를 진입하려고 할때 <br>
+MouseMove - 객체의 그래픽 범위 안에서 마우스 포인터를 움직이려 할때 <br>
+~!~
+마우스 클릭 이벤트<br>
+```
+    function clickHandler() {
+       alert("Hello, World!");
+    }
+
+<span onclick="clickHandler();">Click Here</span>
+```
+<span onclick="clickHandler();">Click Here</span>
+~!~
+키보드 이벤트<br>
+KeyPress - 키보드를 누르거나 해제할때 발생<br>
+KeyDown - 키보드를  눌렀지만 아직 해제 않지 않았을때 발생<br>
+KeyUp - 키보드가 해제 되었을때 발생<br>
+~!~
+```
+  function keypressHandler() {
+    alert ("Hello, World!");
+  }
+<input onkeypress="keypressHandler();" />
+```
+
+<input onkeypress="keypressHandler();" />
+~!~
+스크롤 위치에 따라 바뀐다
+```
+<div class="show-on-scroll">Hello</div>
+```
+```
+window.addEventListener('scroll',function(){
+  var jbOffset = document.getElementById("nav");
+  
+  if(window.scrollY > jbOffset.offsetTop){
+     
+      document.getElementById("nav").className="container, fixed_nav";
+  }
+  else{
+      document.getElementById("nav").className="container";
+  }
+});
+```
+~!@!~
+# END
+
+
+          </script>
+        </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			Reveal.initialize({
+        history:true,
+        mouseWheel: true,
+        multiplex: {
+          secret: '', 
+          id: 'b8f3f0304078631b', 
+          url: 'https://reveal-js-multiplex-ccjbegmaii.now.sh'
+        },
+        dependencies: [
+          { src: 'https://cdn.socket.io/socket.io-1.3.5.js', async: true },
+          { src: 'plugin/multiplex/client.js', async: true },
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
